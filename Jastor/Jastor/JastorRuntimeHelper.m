@@ -53,7 +53,9 @@ static NSMutableDictionary *propertyClassByClassAndPropertyName;
 		objc_property_t property = properties[i];
 		const char * name = property_getName(property);
 		
-		[propertyNamesArray addObject:[NSString stringWithUTF8String:name]];
+        NSString *string = [NSString stringWithUTF8String:name];
+        if(![string isEqualToString:@"description"] && ![string isEqualToString:@"superclass"] && ![string isEqualToString:@"hash"] && ![string isEqualToString:@"debugDescription"])
+            [propertyNamesArray addObject:string];
 	}
 	free(properties);
 	
